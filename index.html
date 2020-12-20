@@ -9,20 +9,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <script>
+        // Initializing variables
         var userScore = 0;
         var compScore = 0;
         var times = 0;
         var history = [0, 0, 0];
 
+        // Initializing the array, didn't seem to work without this
         for (var i = 0; i < 3; i++) {
             history[i] = 0;
         }
 
+        // Main game logic; we are using 0 = Rock, 1 = Paper, 2 = Scissors for both players
         function playGame(userChoice) {
+            // Choose a random number from 0-2
             var compChoice = Math.floor(Math.random() * 3);
 
+            // Keeping track of what the user chose
             history[userChoice]++;
 
+            // Check choice vrs Computer generated choice, increase score for winning player, otherwise it's a tie
             if (userChoice === 0 && compChoice === 1) {
                 document.getElementById("game-info").innerHTML = "You chose Rock and the Computer chose Paper, you lose!";
                 compScore++;
@@ -45,13 +51,22 @@
                 document.getElementById("game-info").innerHTML = "You both chose the same, Tie!";
             }
 
+            // Keeping track of times played
             times++;
+
+            // Printing score to page
             document.getElementById("score").innerHTML = "Your Score " + userScore + " Computer Score " + compScore + " Ties: " + (times - (userScore + compScore));
         }
 
+        // Analyzes the players choices and prints history and skill level to page
         function analyse() {
+            // Prints users choice history to page
             document.getElementById("game-info").innerHTML = "You chose Rock " + history[0] + " times. You chose Paper " + history[1] + " times. You chose Scissors " + history[2] + " times."
+
+            // Set a default skill level
             var skill = 2;
+
+            // Check whether the player used one choice more than 75%, or 50%, or less and give a skill level
             for (var i = 0; i < 3; i++) {
                 if ((history[i] / times) >= .75) {
                     skill = 0;
@@ -64,6 +79,7 @@
                 }
             }
 
+            // Print skill level message to page
             switch (skill) {
                 case 2:
                     document.getElementById("score").innerHTML = "The Computer thinks you were a challenging opponent.  You are the essence of Chaos!";
@@ -76,6 +92,8 @@
                     break;
             }
 
+
+            // Reset all variables for new analysis
             for (var i = 0; i < 3; i++) {
                 history[i] = 0;
             }
@@ -91,6 +109,7 @@
 
 <body class="bg-secondary">
     <main>
+        <!-- Main page container:  One button for each choice, then two text areas for results, score, and analysis -->
         <div class="container col-8 mt-5">
             <h1 class="justify-content-center text-success">Super Roshambo</h1>
             <div class="row">
