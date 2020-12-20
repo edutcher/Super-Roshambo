@@ -21,39 +21,28 @@
         function playGame(userChoice) {
             var compChoice = Math.floor(Math.random() * 3);
 
-            if (userChoice === 0 && compChoice === 0) {
-                document.getElementById("game-info").innerHTML = "You chose Rock and the Computer chose Rock, Tie";
-                history[0]++;
-            } else if (userChoice === 0 && compChoice === 1) {
+            history[userChoice]++;
+
+            if (userChoice === 0 && compChoice === 1) {
                 document.getElementById("game-info").innerHTML = "You chose Rock and the Computer chose Paper, you lose!";
-                history[0]++;
                 compScore++;
             } else if (userChoice === 0 && compChoice === 2) {
                 document.getElementById("game-info").innerHTML = "You chose Rock and the Computer chose Scissors, you win!";
-                history[0]++;
                 userScore++;
             } else if (userChoice === 1 && compChoice === 0) {
                 document.getElementById("game-info").innerHTML = "You chose Paper and the Computer chose Rock, you win!";
-                history[1]++;
                 userScore++;
-            } else if (userChoice === 1 && compChoice === 1) {
-                document.getElementById("game-info").innerHTML = "You chose Paper and the Computer chose Paper, Tie";
-                history[1]++;
             } else if (userChoice === 1 && compChoice === 2) {
                 document.getElementById("game-info").innerHTML = "You chose Paper and the Computer chose Scissors, you lose";
-                history[1]++;
                 compScore++;
             } else if (userChoice === 2 && compChoice === 0) {
                 document.getElementById("game-info").innerHTML = "You chose Scissors and the Computer chose Rock, you lose";
-                history[2]++;
                 compScore++;
             } else if (userChoice === 2 && compChoice === 1) {
                 document.getElementById("game-info").innerHTML = "You chose Scissors and the Computer chose Paper, you win!";
-                history[2]++;
                 userScore++;
-            } else if (userChoice === 2 && compChoice === 2) {
+            } else {
                 document.getElementById("game-info").innerHTML = "You chose Scissors and the Computer chose Scissors, Tie";
-                history[2]++;
             }
 
             times++;
