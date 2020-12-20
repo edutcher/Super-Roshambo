@@ -11,6 +11,7 @@
     <script>
         var userScore = 0;
         var compScore = 0;
+        var times = 0;
         var history = [0, 0, 0];
 
         function playGame(userChoice) {
@@ -50,14 +51,38 @@
                 document.getElementById("game-info").innerHTML = "You chose Scissors and the Computer chose Scissors, Tie";
                 history[2]++;
             }
+
+            times++;
+            document.getElementById("score").innerHTML = "Your Score " + userScore + " Computer Score " + compScore + " Ties: " + (times - (userScore + compScore));
         }
     </script>
 
     <title>Super Roshambo</title>
 </head>
 
-<body>
+<body class=".bg-secondary">
+    <main>
+        <div class="container col-8 mt-5">
+            <h1 class="justify-content-center text-success">Super Roshambo</h1>
+            <div class="row">
+                <button class="btn btn-danger col-4" onclick="playGame(0)">Rock</button>
+            </div>
+            <div class="row">
+                <button class="btn btn-danger col-4" onclick="playGame(1)">Paper</button>
+            </div>
+            <div class="row">
+                <button class="btn btn-danger col-4" onclick="playGame(2)">Scissors</button>
+            </div>
 
+            <div class="row pt-4">
+                <p id="game-info"></p>
+            </div>
+
+            <div class="row mt-5">
+                <p id="score"></p>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
